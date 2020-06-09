@@ -1,3 +1,5 @@
+![Ruby Gem](https://github.com/driggl/fast_cqrs/workflows/Ruby%20Gem/badge.svg?branch=master)
+
 # FastCqrs
 
 A collection of small classes allowing to implement CQRS API in ruby applications without too much of an effort.

@@ -1,8 +1,6 @@
 # FastCqrs
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fast_cqrs`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A collection of small classes allowing to implement CQRS API in ruby applications without too much of an effort.
 
 ## Installation
 
@@ -22,7 +20,70 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Transactions
+
+`FastCqrs` delivers transactions as the main piece of the request processing. A whole request processing is
+encapsulated within the transaction object, so it's easy to write unit tests for your endpoints without loading
+the whole framework while testing.
+
+Also, it's super easy to inject dependencies when needed.
+
+Basic transaction could look like this.
+
+```ruby
+   # transactions/create_article.rb
+
+  class CreateArticle < FastCqrs::Transaction
+    def call(params, **)
+      model = yield deserialize(params)
+      yield authorize(model)
+      yield create_article(model)
+      Success()
+    end
+
+    private
+
+    def deserialize(params)
+      request.call(params)
+    end
+
+    def authorize(model)
+      authorizer.call(params)
+    end
+
+    def create_article(model)
+      Try { Article.create!(model) }
+    end
+
+    def initialize
+      @authorizer = Authorizer.new
+      @request = Request.new
+    end
+  end
+```
+
+```ruby
+  # articles_controller
+
+  def create
+    Transactions::CreateArticle.new.call(params)
+  end
+
+  def create
+    Transactions::UpdateArticle.new.call(params)
+  end
+
+```
+
+### Transaction blocks
+
+Typical transaction consists of:
+
+- request - This parses the request body and modifies the input for an easy to use output.
+- authorizer - authorizes the parsed input against the given auth object
+- validator - validates the request
+- actions - methods making changes in the system.
+
 
 ## Development
 
@@ -32,7 +93,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/fast_cqrs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/fast_cqrs/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/driggl/fast_cqrs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/driggl/fast_cqrs/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
@@ -41,4 +102,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the FastCqrs project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/fast_cqrs/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the FastCqrs project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/driggl/fast_cqrs/blob/master/CODE_OF_CONDUCT.md).

@@ -15,7 +15,7 @@ module FastCqrs
       end
     end
 
-    def call(input, **)
+    def call(_input, **)
       Success()
     end
   end

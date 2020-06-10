@@ -13,6 +13,7 @@ module FastCqrs
 
     def call(**)
       return Success() if authorize
+
       fail!
     end
 

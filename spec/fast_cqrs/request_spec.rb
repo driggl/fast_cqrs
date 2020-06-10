@@ -4,12 +4,12 @@ require 'fast_cqrs/deserializer/json_api'
 
 module FastCqrs
   RSpec.describe Request do
-    describe "#call" do
+    describe '#call' do
       let(:deserializer) { double('deserializer') }
 
       context 'when valid request' do
         before do
-          allow(deserializer).to receive(:call) do |hash={}|
+          allow(deserializer).to receive(:call) do |_hash = {}|
             { foo: 'foo', bar: 'bar' }
           end
         end
@@ -22,8 +22,8 @@ module FastCqrs
 
       context 'when invalid request' do
         before do
-          allow(deserializer).to receive(:call) do |hash={}|
-            raise "Invalid request"
+          allow(deserializer).to receive(:call) do |_hash = {}|
+            raise 'Invalid request'
           end
         end
         subject { described_class.new(deserializer: deserializer) }
@@ -34,7 +34,6 @@ module FastCqrs
           expect(result.failure).to eq(:deserialize)
         end
       end
-
 
       context 'inherited invalid request' do
         subject { InvalidRequest.new(deserializer: Deserializer::JsonApi.new).call({}) }
@@ -60,7 +59,7 @@ module FastCqrs
     protected
 
     def model(_input)
-      return
+      nil
     end
   end
 
@@ -68,7 +67,7 @@ module FastCqrs
     protected
 
     def model(_input)
-      return { foo: 'foo', bar: 'bar' }
+      { foo: 'foo', bar: 'bar' }
     end
   end
 end

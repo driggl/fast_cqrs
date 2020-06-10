@@ -1,4 +1,5 @@
 ![Run tests](https://github.com/driggl/fast_cqrs/workflows/Run%20tests/badge.svg?branch=master&event=push)
+[![Gem Version](https://badge.fury.io/rb/fast_cqrs.svg)](https://badge.fury.io/rb/fast_cqrs)
 
 # FastCqrs
 

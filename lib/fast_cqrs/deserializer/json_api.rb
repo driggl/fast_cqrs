@@ -4,6 +4,10 @@ require 'ostruct'
 
 module FastCqrs
   module Deserializer
+    # Transforms the JSON API request body to a flat hash
+    # Input: { data: { id: 1, type: 'foo', attributes: { bar: 'bar' } } }
+    # Output: { id: 1, resource_type: 'foo', bar: 'bar' }
+    #
     class JsonApi
       IncorrectFormat = Class.new(StandardError)
       HashInputRequired = Class.new(StandardError)

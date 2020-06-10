@@ -3,6 +3,10 @@
 require 'dry/monads'
 
 module FastCqrs
+  # A base Authorizer class used to validate the access to the given resource
+  # an easy to use hash.
+  # Usage: Inherit and override the #authorize method
+  #
   class Authorizer
     def self.inherited(klass)
       super

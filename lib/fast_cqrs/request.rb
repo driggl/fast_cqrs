@@ -3,6 +3,11 @@
 require 'dry/monads'
 
 module FastCqrs
+  # A base Request class uses deserializer to parse the Rack::Request body into
+  # an easy to use hash. Useful when more data are required
+  # than passed in the input
+  # Usage: Inherit and override the #model method
+  #
   class Request
     include Dry::Monads[:result, :try]
 

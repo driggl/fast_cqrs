@@ -5,6 +5,9 @@ require 'dry/monads'
 require 'dry/validation'
 
 module FastCqrs
+  # A base transaction class to process the request.
+  # Usage: Inherit and override the #call
+  #
   class Transaction
     Dry::Validation.load_extensions(:monads)
     def self.inherited(klass)
@@ -15,7 +18,7 @@ module FastCqrs
       end
     end
 
-    def call(input, **)
+    def call(_input, **)
       Success()
     end
   end

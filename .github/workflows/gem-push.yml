@@ -15,10 +15,12 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         version: 2.7.x
+    - name: Install dependencies
+      run: bundle install
+    - name: Rubocop lint check
+      run: bundle exec rubocop
     - name: Run tests
-      run: |
-        bundle install
-        bundle exec rspec
+      run: bundle exec rspec
     - name: Publish to RubyGems
       run: |
         mkdir -p $HOME/.gem

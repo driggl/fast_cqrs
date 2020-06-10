@@ -10,7 +10,8 @@ Layout/DotPosition:
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/BlockLength:
   Exclude:
-    - "spec/**/*"
+    - 'spec/**/*'
+    - 'fast_cqrs.gemspec'
 
 Style/DoubleNegation:
   Enabled: false

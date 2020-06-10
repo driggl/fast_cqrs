@@ -1,0 +1,45 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.7.1
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Commonly used screens these days easily fit more than 80 characters.
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+Style/DoubleNegation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true

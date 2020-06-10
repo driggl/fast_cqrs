@@ -1,4 +1,4 @@
-![Ruby Gem](https://github.com/driggl/fast_cqrs/workflows/Ruby%20Gem/badge.svg?branch=master)
+![Run tests](https://github.com/driggl/fast_cqrs/workflows/Run%20tests/badge.svg?branch=master&event=push)
 
 # FastCqrs
 

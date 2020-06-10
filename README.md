@@ -98,6 +98,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/driggl/fast_cqrs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/driggl/fast_cqrs/blob/master/CODE_OF_CONDUCT.md).
 
+### Publishing new version
+
+1. Push commit with updated `version.rb` file to the `release` branch. The new version will be automatically pushed to [rubygems](https://rubygems.org).
+2. Create release on github including change log.
 
 ## License
 

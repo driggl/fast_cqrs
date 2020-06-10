@@ -1,4 +1,5 @@
 ![Run tests](https://github.com/driggl/fast_cqrs/workflows/Run%20tests/badge.svg?branch=master&event=push)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ba5ae197b61f418ba9c4fdb0239aa8f4)](https://app.codacy.com/gh/driggl/fast_cqrs?utm_source=github.com&utm_medium=referral&utm_content=driggl/fast_cqrs&utm_campaign=Badge_Grade_Dashboard)
 [![Gem Version](https://badge.fury.io/rb/fast_cqrs.svg)](https://badge.fury.io/rb/fast_cqrs)
 
 # FastCqrs

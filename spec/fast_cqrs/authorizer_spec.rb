@@ -4,17 +4,17 @@ module FastCqrs
   RSpec.describe Authorizer do
     subject { described_class.new }
 
-    it 'returns success monad' do
-      expect(subject.call).to be_success
+    it 'returns failure monad' do
+      result = subject.call
+      expect(result).to be_failure
+      expect(result.failure).to eq(:authorize)
     end
 
-    context 'when fails' do
+    context 'when success' do
       subject { DummyAuthorizer.new }
 
-      it 'returns failure if not authorized' do
-        result = subject.call
-        expect(result).to be_failure
-        expect(result.failure).to eq(:authorize)
+      it 'returns success if authorized' do
+        expect(subject.call).to be_success
       end
     end
   end
@@ -22,8 +22,8 @@ module FastCqrs
   class DummyAuthorizer < Authorizer
     protected
 
-    def authorize
-      false
+    def authorize(_subject, _auth)
+      true
     end
   end
 end

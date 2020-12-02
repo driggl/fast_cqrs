@@ -15,8 +15,8 @@ module FastCqrs
       end
     end
 
-    def call(**)
-      return Success() if authorize
+    def call(subject: nil, auth: nil)
+      return Success() if authorize(subject, auth)
 
       fail!
     end
@@ -24,8 +24,8 @@ module FastCqrs
     protected
 
     # Override this in the inherited class
-    def authorize
-      true
+    def authorize(_subject, _auth)
+      false
     end
 
     private

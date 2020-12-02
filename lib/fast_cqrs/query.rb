@@ -8,7 +8,7 @@ module FastCqrs
   # A base transaction class to process the request.
   # Usage: Inherit and override the #call
   #
-  class Transaction
+  class Query
     Dry::Validation.load_extensions(:monads)
     def self.inherited(klass)
       super
